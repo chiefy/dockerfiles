@@ -2,7 +2,7 @@ FROM alpine:latest
 
 MAINTAINER Christopher 'Chief' Najewicz <chief@beefdisciple.com>
 
-ADD https://bintray.com/artifact/download/mitchellh/vault/vault_0.1.2_linux_amd64.zip /tmp/vault.zip
+ADD https://bintray.com/artifact/download/mitchellh/vault/vault_0.2.0_linux_amd64.zip /tmp/vault.zip
 
 RUN cd /bin && unzip /tmp/vault.zip && chmod +x /bin/vault && rm /tmp/vault.zip
 
