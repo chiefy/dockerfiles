@@ -1,0 +1,4 @@
+mediawiki:
+    build: .
+nginx:
+    image: 
