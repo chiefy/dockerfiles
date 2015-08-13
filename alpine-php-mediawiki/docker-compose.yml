@@ -1,4 +1,10 @@
 mediawiki:
     build: .
 nginx:
-    image: 
+    image: chiefy/alpine-nginx:1.9.3
+    volumes:
+      - "./nginx.conf:/etc/nginx/conf/nginx.conf"
+    links:
+      - mediawiki
+    ports:
+      - "0.0.0.0:80:80"
