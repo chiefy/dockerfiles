@@ -1,10 +1,19 @@
 mediawiki:
     build: .
+    links:
+      - db
 nginx:
     image: chiefy/alpine-nginx:1.9.3
     volumes:
       - "./nginx.conf:/etc/nginx/conf/nginx.conf"
+    volumes_from:
+      - mediawiki
     links:
       - mediawiki
     ports:
       - "0.0.0.0:80:80"
+db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: poopypants
+      MYSQL_DATABASE: mediawiki
