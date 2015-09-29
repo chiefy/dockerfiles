@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gopath=/gopath/src/github.com/hashicorp/otto
-version=0.1.0
+version=0.1.1
 
 
 clean() {
