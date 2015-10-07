@@ -20,6 +20,6 @@ docker run \
 	--memory-swap -1 \
 	-v "$MY_VAULT_CONFIG:/etc/vault.hcl" \
 	-p 8200:8200 \
-	chiefy/alpine-vault:0.1.2
+	chiefy/alpine-vault:0.3.1
 
 ```
