@@ -6,6 +6,8 @@ ADD https://bintray.com/artifact/download/mitchellh/vault/vault_0.3.1_linux_amd6
 
 RUN cd /bin && unzip /tmp/vault.zip && chmod +x /bin/vault && rm /tmp/vault.zip
 
+RUN apk update && apk add ca-certificates
+
 EXPOSE 8200
 
 VOLUME /etc/vault.hcl
