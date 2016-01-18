@@ -2,7 +2,9 @@ FROM alpine:latest
 
 MAINTAINER Christopher 'Chief' Najewicz <chief@beefdisciple.com>
 
-ADD https://releases.hashicorp.com/vault/0.3.1/vault_0.3.1_linux_amd64.zip /tmp/vault.zip
+ENV version=0.4.1
+
+ADD https://releases.hashicorp.com/vault/${version}/vault_${version}_linux_amd64.zip /tmp/vault.zip
 
 RUN cd /bin && unzip /tmp/vault.zip && chmod +x /bin/vault && rm /tmp/vault.zip
 
