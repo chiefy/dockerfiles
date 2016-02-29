@@ -2,7 +2,7 @@ FROM alpine:latest
 
 MAINTAINER Christopher 'Chief' Najewicz <chief@beefdisciple.com>
 
-ENV version=0.4.1
+ENV version=0.5.1
 
 ADD https://releases.hashicorp.com/vault/${version}/vault_${version}_linux_amd64.zip /tmp/vault.zip
 
