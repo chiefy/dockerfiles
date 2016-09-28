@@ -1,2 +1,5 @@
 alpine-terraform/src/terraform
 alpine-php-mediawiki/src/wiki_images
+alpine-php-mediawiki/www/extensions
+alpine-php-mediawiki/www/images
+alpine-php-mediawiki/backup
