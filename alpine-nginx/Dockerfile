@@ -1,9 +1,9 @@
-FROM alpine:3.4
+FROM alpine:3.5
 
 MAINTAINER Christopher 'Chief' Najewicz <chief@beefdisciple.com>
 
 # Taken from connexiolabs/alpine-nginx which appears dead (thanks!).
-ENV NGINX_VERSION nginx-1.10.1
+ENV NGINX_VERSION nginx-1.12.2
 
 RUN \
 	apk --update add \
