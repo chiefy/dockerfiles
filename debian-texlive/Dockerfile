@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-COPY texlive.profile /
+COPY conf/texlive.conf /texlive.profile
 
 RUN PACKAGES="wget libswitch-perl" \
 	&& apt-get update \
