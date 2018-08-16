@@ -5,6 +5,7 @@ RUN \
     apk add \
     ca-certificates \
     python3 \
+    tar \
     curl \
     && curl -o /tmp/get-pip.py -Ss https://bootstrap.pypa.io/get-pip.py \
     && python3 /tmp/get-pip.py \
