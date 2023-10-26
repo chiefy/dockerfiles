@@ -1,0 +1,26 @@
+name: Docker Image CI - debian-mpd
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "debian-mpd/**"
+
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Build and publish "latest" Docker image
+      uses: VaultVulp/gp-docker-action@1.6.0
+      with:
+        github-token: ${{ secrets.PAT_GHCR }}
+        image-name: mpd
+        dockerfile: Dockerfile
+        build-context: ./debian-mpd
