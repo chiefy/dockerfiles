@@ -12,4 +12,4 @@ USER mpd
 
 EXPOSE 6600
 
-CMD [ "/bin/bash", "-c", "mkfifo /tmp/snapfifo; mpd --no-daemon --stderr" ]
+CMD [ "/bin/bash", "-c", "mpd --no-daemon --stderr" ]
