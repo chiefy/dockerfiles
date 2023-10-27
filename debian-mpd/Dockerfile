@@ -12,4 +12,7 @@ USER mpd
 
 EXPOSE 6600
 
+# FIFO file for snapcast
+RUN mkfifo /var/local/snap
+
 CMD [ "mpd", "--no-daemon", "--stderr" ]
