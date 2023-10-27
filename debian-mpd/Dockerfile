@@ -12,4 +12,4 @@ USER mpd
 
 EXPOSE 6600
 
-CMD [ "/bin/bash", "-c", "mpc update; mpd --no-daemon --stderr" ]
+CMD [ "mpd", "--no-daemon", "--stderr" ]
