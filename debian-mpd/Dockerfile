@@ -1,12 +1,16 @@
-FROM debian:stable-slim
+FROM debian:sid-slim
 
-RUN apt-get -y update  \
-    && apt-get -y upgrade \
-    && apt-get -y install curl \
-    && curl -LSs -o /usr/share/keyrings/deb.kaliko.me.gpg https://media.kaliko.me/kaliko.gpg \
-    && echo "deb [signed-by=/usr/share/keyrings/deb.kaliko.me.gpg] https://deb.kaliko.me/debian-backports/ stable-backports main" >> /etc/apt/sources.list.d/deb.kaliko.me.list \
-    && apt-get -y update \
-    && apt-get -y install mpd mpc netcat-traditional
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && apt-get install -y curl ca-certificates \
+    && curl -O "https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb" \
+    && dpkg -i ./deb-multimedia-keyring_2016.8.1_all.deb \
+    && echo "deb https://www.deb-multimedia.org sid main" >> /etc/apt/sources.list \
+    && apt-get update \
+    && apt-get install -y mpd \
+    && apt-get remove -y curl \
+    && apt-get autopurge -y \
+    && apt-get clean -y
 
 USER mpd
 
