@@ -13,7 +13,7 @@ RUN apt-get update \
     && apt-get clean -y
 
 RUN mkdir -p /var/lib/mpd/db/music /var/lib/mpd/cache \
-    && chown -R mpd:mpd /var/lib/mpd
+    && chown -R mpd:audio /var/lib/mpd
 
 USER mpd
 
