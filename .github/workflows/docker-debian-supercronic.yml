@@ -1,0 +1,25 @@
+name: Docker Image CI - supercronic
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "debian-supercronic/*"
+
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and publish "latest" Docker image
+        uses: VaultVulp/gp-docker-action@1.6.0
+        with:
+          github-token: ${{ secrets.PAT_GHCR }}
+          image-name: debian-supercronic
+          dockerfile: Dockerfile
+          build-context: ./debian-supercronic
