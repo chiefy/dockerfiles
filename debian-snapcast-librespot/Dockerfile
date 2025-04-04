@@ -23,7 +23,7 @@ ENV ARCH=amd64
 RUN apt-get update
 RUN apt install -y curl unzip \
     && curl -Ls -o /tmp/snapserver.deb \
-        "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapcast_${SNAPCAST_VERSION}${SNAPCAST_PATCH_REV}_amd64-bookworm.deb" \
+        "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}${SNAPCAST_PATCH_REV}_amd64-bookworm.deb" \
     && dpkg -i /tmp/snapserver.deb || apt -f install -y \
     && mv /etc/snapserver.conf /etc/snapserver.conf.org \
     && rm -f /tmp/snapserver.deb \
