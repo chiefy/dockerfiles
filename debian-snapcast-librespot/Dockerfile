@@ -17,12 +17,13 @@ RUN cargo install librespot --version "${LIBRESPOT_VERSION}"
 FROM debian:bookworm-slim
 
 ENV SNAPCAST_VERSION=0.31.0
+ENV SNAPCAST_PATCH_REV=-1
 ENV ARCH=amd64
 
 RUN apt-get update
 RUN apt install -y curl unzip \
     && curl -Ls -o /tmp/snapserver.zip \
-        "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapcast_${SNAPCAST_VERSION}_amd64-debian-bookworm.zip" \
+        "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapcast_${SNAPCAST_VERSION}${SNAPCAST_PATCH_REV}_amd64-debian-bookworm.zip" \
     && unzip -d /tmp /tmp/snapserver.zip \
     && dpkg -i /tmp/snapserver_*.deb || apt -f install -y \
     && mv /etc/snapserver.conf /etc/snapserver.conf.org \
