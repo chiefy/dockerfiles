@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get -y clean && rm -fR /var/lib/apt/lists
 
 ENV ARCH=amd64
-ENV LIBRESPOT_VERSION=0.4.2
+ENV LIBRESPOT_VERSION=0.6.0
 
 RUN cargo install librespot --version "${LIBRESPOT_VERSION}"
 
