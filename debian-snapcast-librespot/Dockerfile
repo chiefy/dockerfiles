@@ -16,7 +16,7 @@ RUN cargo install librespot --version "${LIBRESPOT_VERSION}"
 
 FROM debian:bookworm-slim
 
-ENV SNAPCAST_VERSION=0.31.0
+ENV SNAPCAST_VERSION=0.32.3
 ENV SNAPCAST_PATCH_REV=-1
 ENV ARCH=amd64
 
