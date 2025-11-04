@@ -1,11 +1,11 @@
-FROM debian:sid-slim
+FROM debian:trixie-slim
 
 RUN apt-get update \
     && apt-get upgrade -y --no-install-recommends \
-    && apt-get install -y curl ca-certificates \
-    && curl -O "https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb" \
-    && dpkg -i ./deb-multimedia-keyring_2016.8.1_all.deb \
-    && echo "deb https://www.deb-multimedia.org sid main" >> /etc/apt/sources.list \
+    && apt-get install -y gpgv curl ca-certificates \
+    && curl -O "https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb" \
+    && dpkg -i deb-multimedia-keyring_2024.9.1_all.deb \
+    && echo "deb https://www.deb-multimedia.org trixie main" >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y mpd \
     && apt-get remove -y curl \
