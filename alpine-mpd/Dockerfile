@@ -16,4 +16,4 @@ USER mpd
 
 EXPOSE 6600
 
-CMD [ "/bin/bash", "-c", "mpd --no-daemon --stderr ${VERBOSE}" ]
+CMD [ "/bin/ash", "-c", "mpd --no-daemon --stderr ${VERBOSE}" ]
