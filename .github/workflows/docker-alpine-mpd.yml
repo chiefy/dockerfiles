@@ -1,11 +1,11 @@
-name: Docker Image CI - debian-slim-mpd
+name: Docker Image CI - alpine-mpd
 
 on:
   push:
     branches:
       - master
     paths:
-      - "debian-mpd/*"
+      - "alpine-mpd/*"
 
   workflow_dispatch: {}
 
@@ -21,6 +21,6 @@ jobs:
       uses: VaultVulp/gp-docker-action@1.6.0
       with:
         github-token: ${{ secrets.PAT_GHCR }}
-        image-name: debian-slim-mpd
+        image-name: alpine-mpd
         dockerfile: Dockerfile
-        build-context: ./debian-mpd
+        build-context: ./alpine-mpd
