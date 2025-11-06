@@ -16,10 +16,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build and publish "latest" Docker image
-        uses: VaultVulp/gp-docker-action@1.6.0
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          github-token: ${{ secrets.PAT_GHCR }}
-          image-name: snapcast-librespot
-          dockerfile: Dockerfile
-          build-context: ./debian-snapcast-librespot
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.PAT_GHCR }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./debian-snapcast-librespot
+          push: true
+          tags: chiefy/snapcast-librespot:latest
