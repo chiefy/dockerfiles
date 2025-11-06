@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get clean -y
 
 RUN mkdir -p /var/lib/mpd/cache \
-    && mkdir /var/lib/mpd/db
+    && mkdir /var/lib/mpd/db \
     && touch /var/lib/mpd/db/music \
     && chown -R mpd:audio /var/lib/mpd
 
