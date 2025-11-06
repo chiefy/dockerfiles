@@ -8,8 +8,9 @@ RUN apt-get update \
     && apt-get autopurge -y \
     && apt-get clean -y
 
-RUN touch /var/lib/mpd/db/music \
-    && mkdir -p /var/lib/mpd/cache \
+RUN mkdir -p /var/lib/mpd/cache \
+    && mkdir /var/lib/mpd/db
+    && touch /var/lib/mpd/db/music \
     && chown -R mpd:audio /var/lib/mpd
 
 USER mpd

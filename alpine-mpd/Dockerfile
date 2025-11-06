@@ -7,8 +7,9 @@ ENV VERBOSE=
 LABEL version=$MPD_VERSION
 
 RUN apk --no-cache add mpd=$MPD_VERSION sqlite-libs \
-    && touch /var/lib/mpd/db/music \
     && mkdir -p /var/lib/mpd/cache \
+    && mkdir /var/lib/mpd/db
+    && touch /var/lib/mpd/db/music \
     && chown -R mpd:audio /var/lib/mpd
 
 USER mpd
