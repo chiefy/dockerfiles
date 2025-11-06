@@ -34,5 +34,5 @@ jobs:
       with:
         context: ./caddy
         push: true
-        tags: chiefy/caddy:latest
+        tags: ghcr.io/chiefy/caddy:latest
 

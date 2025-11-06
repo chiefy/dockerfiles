@@ -34,4 +34,4 @@ jobs:
         with:
           context: ./debian-snapcast-librespot
           push: true
-          tags: chiefy/snapcast-librespot:latest
+          tags: ghcr.io/chiefy/snapcast-librespot:latest

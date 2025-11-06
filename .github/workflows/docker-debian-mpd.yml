@@ -35,4 +35,4 @@ jobs:
       with:
         context: ./debian-mpd
         push: true
-        tags: chiefy/debian-slim-mpd:latest
+        tags: ghcr.io/chiefy/debian-slim-mpd:latest

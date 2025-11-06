@@ -35,5 +35,5 @@ jobs:
       with:
         context: ./alpine-mpd
         push: true
-        tags: chiefy/alpine-mpd:latest
+        tags: ghcr.io/chiefy/alpine-mpd:latest
 

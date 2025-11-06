@@ -34,5 +34,5 @@ jobs:
       with:
         context: ./debian-supercronic
         push: true
-        tags: chiefy/supercronic:latest
+        tags: ghcr.io/chiefy/supercronic:latest
 
