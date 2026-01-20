@@ -1,36 +1,51 @@
-FROM rust:latest AS librespot
+FROM debian:stable-slim AS librespot
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.cargo/bin:${PATH}"
+ENV ARCH=amd64
 
 RUN apt-get update \
-    && apt-get -y install \
+    && apt-get -y install --no-install-recommends \
         build-essential \
-        portaudio19-dev \
+        libasound2-dev \
+        libssl-dev \
+        pkg-config \
+        ca-certificates \
         curl \
-        unzip \
-    && apt-get -y clean && rm -fR /var/lib/apt/lists
+        git \
+    && apt-get -y clean \
+    && rm -fR /var/lib/apt/lists
 
-ENV ARCH=amd64
-ENV LIBRESPOT_VERSION=0.8.0
+# Install Rust (for librespot build)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-RUN cargo install librespot --version "${LIBRESPOT_VERSION}"
+# Build librespot from source
+RUN git clone https://github.com/librespot-org/librespot.git /librespot \
+    && cd /librespot \
+    && cargo build --release \
+    && cp target/release/librespot /usr/local/bin/librespot \
+    && chmod +x /usr/local/bin/librespot \
+    && rm -rf /librespot
 
+########
 
-FROM debian:bookworm-slim
+FROM debian:stable-slim
 
 ENV SNAPCAST_VERSION=0.32.3
 ENV SNAPCAST_PATCH_REV=-1
 ENV ARCH=amd64
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt install -y curl unzip \
     && curl -Ls -o /tmp/snapserver.deb \
         "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}${SNAPCAST_PATCH_REV}_amd64_bookworm.deb" \
     && dpkg -i /tmp/snapserver.deb || apt -f install -y \
-    && mv /etc/snapserver.conf /etc/snapserver.conf.org \
     && rm -f /tmp/snapserver.deb \
     && apt clean -y \
     && rm -fR /var/lib/apt/lists
 
-COPY --from=librespot /usr/local/cargo/bin/librespot /usr/local/bin/
+COPY --from=librespot /usr/local/bin/librespot /usr/local/bin/
 
 VOLUME [ "/etc/snapserver.conf" ]
 
