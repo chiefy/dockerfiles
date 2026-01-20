@@ -31,17 +31,19 @@ RUN git clone https://github.com/librespot-org/librespot.git /librespot \
 
 FROM debian:stable-slim
 
-ENV SNAPCAST_VERSION=0.32.3
+ENV SNAPCAST_VERSION=0.34.0
 ENV SNAPCAST_PATCH_REV=-1
 ENV ARCH=amd64
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update
-RUN apt install -y curl unzip \
+RUN apt-get update && \
+    apt install -y curl unzip \
     && curl -Ls -o /tmp/snapserver.deb \
-        "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}${SNAPCAST_PATCH_REV}_amd64_bookworm.deb" \
-    && dpkg -i /tmp/snapserver.deb || apt -f install -y \
+        "https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}${SNAPCAST_PATCH_REV}_amd64_trixie.deb" \
+    && apt install -y /tmp/snapserver.deb \ 
     && rm -f /tmp/snapserver.deb \
+    && mv /etc/snapserver.conf /etc/snapserver.conf.orig \
+    && apt remove -y curl unzip \
     && apt clean -y \
     && rm -fR /var/lib/apt/lists
 
