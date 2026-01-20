@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-ARG MPD_VERSION=0.24.6-r0
+ARG MPD_VERSION=0.24.6-r1
 
 ENV VERBOSE=
 
